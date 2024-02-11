@@ -8,7 +8,7 @@ import {
     useFonts
 } from "@expo-google-fonts/inter";
 
-import { Loading } from "@/components/Loading";
+import { Loading } from "@/components/loading";
 
 export default function Layout(){
 
