@@ -14,10 +14,14 @@ export function Header({ title, cardValue }: HeaderProps ){
                 <Image source={require("@/assets/logo.png")} className="h-6 w-32" />
                 <Text className="text-white text-xl font-heading">{title}</Text>
             </View>
-            <TouchableOpacity className="relative">
-                <View className="bg-lime-300 w-5 h-5 rounded-full items-center justify-center top-2 z-10 -right-3.5">
-                    <Text className="text-slate-900 font-bold text-xs">{cardValue}</Text>
-                </View>
+            <TouchableOpacity className="relative" activeOpacity={0.7}>
+                {   
+                cardValue > 0 && (
+                    <View className="bg-lime-300 w-5 h-5 rounded-full items-center justify-center top-2 z-10 -right-3.5">
+                        <Text className="text-slate-900 font-bold text-xs">{cardValue}</Text>
+                    </View>
+                    )
+                }
                 <Feather name="shopping-bag" color={colors.white} size={24} />
             </TouchableOpacity>
         </View>
