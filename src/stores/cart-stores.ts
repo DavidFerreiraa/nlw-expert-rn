@@ -14,6 +14,7 @@ type StateProps = {
     products: ProductCartProps[];
     addToCart: (product: ProductProps) => void;
     removeFromCart: (productId: string) => void;
+    clearCart: () => void;
 }
 
 export const useCartStore = create(
@@ -24,7 +25,8 @@ export const useCartStore = create(
                 products: cartInMemory.addToCart(state.products, product),
             })),
         removeFromCart: (productId: string) =>
-            set((state) => ({ products: cartInMemory.removeFromCart(state.products, productId) }))
+            set((state) => ({ products: cartInMemory.removeFromCart(state.products, productId) })),
+        clearCart: () => set(() => ({products: []}))
     }), {
         name: "nlw-expert:cart",
         storage: createJSONStorage(() => AsyncStorage)

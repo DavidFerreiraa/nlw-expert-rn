@@ -1,6 +1,6 @@
 import { ProductCartProps, useCartStore } from "@/stores/cart-stores";
 import { Header } from "@/components/header";
-import { View, Text, ScrollView, Alert } from "react-native";
+import { View, Text, ScrollView, Alert, Linking } from "react-native";
 import { Products } from "@/components/products";
 import { formatCurrency } from "@/utils/functions/format-currency";
 import { Input } from "@/components/input";
@@ -9,8 +9,12 @@ import { Button } from "@/components/button";
 import { Feather } from "@expo/vector-icons";
 import { LinkButton } from "@/components/link-button";
 import { useState } from "react";
+import { useNavigation } from "expo-router";
+
+const PHONE_NUMBER = "";
 
 export default function Cart() {
+    const navigator = useNavigation();
     const [ street, setStreet ] = useState<string>("");
     const [ houseNumber, setHouseNumber ] = useState<string>("");
     const [ neighborhood, setNeighborhood ] = useState<string>("");
@@ -39,6 +43,9 @@ export default function Cart() {
             ${products}\n
             Valor total: ${total}
         `
+        Linking.openURL(`http://api.whatsapp.com/send?phone=${PHONE_NUMBER}&text=${message}`)
+        cartStore.clearCart();
+        navigator.goBack();
     }
     return (
         <View className="flex-1 pt-8">
